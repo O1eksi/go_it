@@ -9,10 +9,11 @@ corn = sys.argv[-1]
 extensions = {
     'img': ['jpg', 'png', 'bmp', 'gif', 'ico', 'jpeg', 'svg'],
     'vidio': ['avi', 'mp4', 'mov', 'mkv'],
-    'document': ['doc', 'docx', 'txt', 'pdf', 'xlsx', 'pptx', 'djvu'],
+    'document': ['doc', 'docx', 'txt', 'pdf', 'xlsx', 'pptx', 'djvu', 'epub'],
     'music': ['mp3', 'ogg', 'wav', 'amr'],
     'archiv': ['zip', 'gz', 'smr'],
     'prj': []
+    'Telegram_Desktop': []
 }
 
 
@@ -87,7 +88,7 @@ def folder_view(path, a=1):
             """
             if i in extensions:
                 continue
-        elif os.path.isdir(path+"\\"+i):
+        if os.path.isdir(path+"\\"+i):
             """
             recursive traversal of a folder
             """
@@ -101,7 +102,7 @@ def folder_view(path, a=1):
                 shutil.unpack_archive(path+"\\"+i, unpaking_path)
                 os.remove(path+"\\"+i)
                 continue
-            elif folder_name == "'prj'":
+            elif folder_name == 'prj':
                 shutil.move(path + "\\" + i, corn +
                             "\\" + folder_name + "\\" + i)
                 continue
@@ -109,8 +110,7 @@ def folder_view(path, a=1):
                 shutil.move(path+"\\"+i, corn+"\\"+folder_name +
                             "\\"+file_name+split_tup[1])
                 continue
-
         os.rmdir(path+"\\"+i)
 
 
-folder_view(r'C:\Users\papa6\Downloads')
+folder_view(corn)
